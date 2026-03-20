@@ -1,8 +1,8 @@
   let allianceData = {
-   "Entente": [
+   "Entente WW1": [
     "France", "United_Kingdom", "Russia", "Italy", "Serbia", "Montenegro", "Greece","Portugal", "Belgium", "Luxembourg", "Romania"
   ],
-  "Central Powers": [
+  "Central Powers WW1": [
     "Germany", "Austria", "Hungary", "Bulgaria"
   ],
   "Allied Countries WW2": [
@@ -45,10 +45,10 @@ wins.innerText = "Wins: " + win
 function alliedFunc() {
       switch(allianceNum) {
         case 0:
-          return "Entente"
+          return "Entente WW1"
           break
         case 1:
-          return "Central Powers"
+          return "Central Powers WW1"
           break
         case 2:
           return "Allied Countries WW2"
