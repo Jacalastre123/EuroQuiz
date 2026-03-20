@@ -14,7 +14,7 @@
     })
     
     load.innerText = "Fully Completed closing..."
-    setTimeout(function() {loading.close()}, 1250)
+    setTimeout(function() {loading.close()}, 1000)
     
 
   }
