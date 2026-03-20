@@ -1,7 +1,7 @@
 const bg = document.getElementById("bg")
 const colorInput = bg.querySelector("#colorInput")
 const bgMus = document.getElementById("bgMus")
-let colour = localStorage.getItem("colorInput") || "white"
+let colour = localStorage.getItem("colorInput") || "#55a0aa"
 document.body.style.backgroundColor = colour
 function submit() {
     document.body.style.backgroundColor = colorInput.value
