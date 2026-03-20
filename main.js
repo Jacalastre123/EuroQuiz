@@ -91,14 +91,6 @@ function gameExecute() {
      document.querySelectorAll("path").forEach(item => {
       item.style.fill = "rgba(255, 255, 255, 0.67)"
     })
-
-   if (questionStack.includes(decision)) {
-    console.log("It works")
-   }
-   else {
-    console.log(decision)
-   }
-      
       
     if (questionStack[0] === decision) {
  random = Math.floor(Math.random() * countriesData.length)
@@ -228,7 +220,7 @@ function gameExecute() {
             } 
             trying++
          if (answerArray.length === 0) {
-              console.log("You WON!")
+             
               youWon.showModal()
               win++
               triesWon.innerText = "Tries: " + trying
