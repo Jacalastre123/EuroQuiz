@@ -1,4 +1,5 @@
-  path{
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+path{
             fill: rgba(255, 255, 255, 0.64);
            }
 
@@ -8,8 +9,7 @@
 
            body {
             text-align: center;
-            font-size: 0.6em;
-            font-family: Arial;
+            font-family: Open Sans;
             background-color: #55a0aa;
            }
            .quest {
