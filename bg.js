@@ -13,7 +13,7 @@ function submit() {
 document.addEventListener("click", () => {
     bgMus.loop = true
     bgMus.volume = 0.8
-
+    bgMus.play()
 })
 
 function off(button) {
