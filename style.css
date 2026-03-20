@@ -1,0 +1,93 @@
+  path{
+            fill: rgba(255, 255, 255, 0.67);
+           }
+
+           svg {
+               background-color: cornflowerblue;
+           }
+
+           body {
+            text-align: center;
+            font-size: 1em;
+            font-family: Arial;
+           }
+           .quest {
+            background-color: rgba(200,200,200,0.5);
+            padding: 5px;
+            text-align: left;
+           }
+           #Italy {
+             fill: rgba(255, 255, 255, 0.67);
+           }
+
+           .box {
+            font-size: 20px;
+            position: fixed;
+            border: 1px solid black;
+            background-color: rgba(13, 120, 186, 0.892);
+            
+            
+            padding: 5px;
+            transition: all 0.5s;
+           }
+           .box::after {
+            content: " ";
+            position: absolute;
+            border-radius: 100px;
+            height: 1px;
+            width: 1px;
+            transform: scale(7);
+            border: 1px solid black;
+            background-color: var(--colour);
+            top: -2px;
+            left: -2px;
+           }
+           
+
+           button {
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 3px;
+            margin: 4px;
+            transition: transform 0.5s;
+           }
+
+           button:hover {
+            background-color: lightgrey;
+            transform: scale(1.2);
+           }
+
+           #bar h3 {
+            background-color: rgba(13, 120, 186, 0.892);
+            padding: 10px;
+            border-radius: 10px;
+           }
+           #bar {
+            display: flex;
+            gap: 25px;
+            padding: 0px;
+            margin: 3px;
+            background-color: rgba(0, 0, 0, 0.215);
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+           }
+           .quizzing, .bg, .offMus {
+            width: 99%;
+           }
+           dialog {
+            padding: 10px;
+             border-radius: 20px;
+           }
+           
+           .loading {
+            height: 20vh;
+            width: 20vh;
+           }
+
+           h4 {
+            background-color : rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            border-radius: 5px;
+           }
