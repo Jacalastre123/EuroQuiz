@@ -75,9 +75,15 @@ path{
             align-items: center;
             border-radius: 5px;
            }
-           .quizzing, .bg, .offMus {
+           .bg, .offMus {
             width: 30%;
            }
+.quizzing {
+
+            width: 99%;
+            height: 8vh;
+            
+}
            dialog {
             padding: 10px;
              border-radius: 20px;
