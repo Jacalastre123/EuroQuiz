@@ -89,7 +89,7 @@ function alliedFunc() {
     }, 100)
 function gameExecute() {
      document.querySelectorAll("path").forEach(item => {
-      item.style.fill = "rgba(255, 255, 255, 0.67)"
+      item.style.fill = "rgba(255, 255, 255, 0.64)"
     })
       
     if (questionStack[0] === decision) {
@@ -148,7 +148,7 @@ function gameExecute() {
         }
         
         item.onclick = function() {
-          if (window.getComputedStyle(item).fill === "rgba(255, 255, 255, 0.67)") {
+          if (window.getComputedStyle(item).fill === "rgba(255, 255, 255, 0.64)") {
           if (Number(countryName.area) > Number(countriesData[random].area)) {
           
             answerArray = answerArray.filter(ans => ans !== item.id)
@@ -204,8 +204,8 @@ function gameExecute() {
           }
         panel.innerText = "Countries in the alliance: " + answerArray.length
         item.onclick = function() {
-          console.log(window.getComputedStyle(item).fill)
-          if (window.getComputedStyle(item).fill === "rgba(255, 255, 255, 0.67)") {
+         
+          if (window.getComputedStyle(item).fill === "rgba(255, 255, 255, 0.64)") {
             if (answerArray.includes(item.id)) {
 
             
