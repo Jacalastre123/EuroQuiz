@@ -81,6 +81,7 @@ path{
            dialog {
             padding: 10px;
              border-radius: 20px;
+            font-size: 0.8em;
            }
            
            .loading {
