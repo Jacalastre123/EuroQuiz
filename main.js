@@ -13,10 +13,12 @@
   ],
  
   }
+ 
   const questionStack = [
     "Capital",
     "Area",
-    "Alliances"
+    "Alliances", 
+
   ]
   let countriesData = []
 
@@ -68,7 +70,7 @@ function alliedFunc() {
    let limit = 10
     let time = 0
     trying = 0
-  
+    tries.innerText = "Tries: " + trying
     let randomiser = await setInterval(function() {
 
       if (time < limit) {

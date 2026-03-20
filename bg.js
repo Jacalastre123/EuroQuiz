@@ -10,12 +10,14 @@ function submit() {
     
 }
 
-document.addEventListener("click", () => {
+
+let musicActivator = document.addEventListener("mousemove", playing)
+function playing() {
     bgMus.loop = true
     bgMus.volume = 0.8
     bgMus.play()
-})
-
+    document.removeEventListener("mousemove", playing)
+}
 function off(button) {
     
     if (bgMus.paused) {
