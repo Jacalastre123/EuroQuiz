@@ -14,13 +14,13 @@ path{
             font-family: Open Sans;
             background-color: #55a0aa;
            }
-           svg {
-            height: 100%;
-           }
+           
            .quest {
-             background-color: rgba(13, 120, 190, 0.892);
+             background-color: rgba(104, 190, 247, 0.892);
             padding: 5px;
             text-align: left;
+            border-radius: 10px;
+            
            }
            #Italy {
              fill: rgba(255, 255, 255, 0.64);
