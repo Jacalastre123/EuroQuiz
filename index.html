@@ -24,15 +24,19 @@
 </div>
 <h4>Answer capitals or area, find the country with the capital, find a country that is bigger than the country provided or look at alliances, those historical alliances makes you have to guess it in modern day borders! if you right click a country, it will tell you the name.</h4>
     <div class="quest">
+      <div>
 <h3 id="question">Click Start!</h3>
 <h5 id="panel">There's 3 random modes, alliance, capital and area (Which country is bigger).</h5>
 </div>
+<img id="imgDisp"></div>
+
+
       <button onclick="quizzingTime(this)" class="quizzing">Start</button>
       <nav>
           
 
 <button onclick="bg.showModal()" class="bg">Set Background Colour</button>
-<button onclick="off(this)" class="offMus">Turn off Music</button>
+<button onclick="off(this)" class="offMus" id="musBut">Turn off Music</button>
       </nav>
 <dialog id="bg">
   <h2>Background Color</h2>
@@ -42,6 +46,7 @@
 
   </form>
   <button onclick="submit()">Submit</button>
+  <button onclick="revDefault()">Default</button>
   <button onclick="bg.close()">Close</button>
   
 </dialog>
@@ -251,7 +256,7 @@
   <button onclick="quizzingTime(false); youWon.close()">Retry</button>
   
 </dialog>
-<audio src="bgMus.mp3" id="bgMus" autoplay></audio>
+<audio src="bgMus.mp3" id="bgMus"></audio>
 <script type="module" src="Server.js"></script>
 <script src="bg.js"></script>
 <script defer src="main.js">

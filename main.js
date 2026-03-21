@@ -18,7 +18,7 @@
     "Capital",
     "Area",
     "Alliances", 
-
+    "Flags"
   ]
   let countriesData = []
 
@@ -34,7 +34,7 @@ const wonAt = youWon.querySelector("#wonAt")
 const tries = document.getElementById("tries")
 const wins = document.getElementById("wins")
 const gameType = document.getElementById("gameType")
-
+const imgDisp = document.getElementById("imgDisp")
 let win = localStorage.getItem("win") || 0
 let trying = 0
   let decision;
@@ -72,7 +72,7 @@ function alliedFunc() {
     trying = 0
     tries.innerText = "Tries: " + trying
     let randomiser = await setInterval(function() {
-
+     
       if (time < limit) {
         if (button) {
           button.disabled = true
@@ -93,7 +93,7 @@ function gameExecute() {
      document.querySelectorAll("path").forEach(item => {
       item.style.fill = "rgba(255, 255, 255, 0.64)"
     })
-      
+       imgDisp.src = ""
     if (questionStack[0] === decision) {
  random = Math.floor(Math.random() * countriesData.length)
      question.innerText = "What country has the capital of " + countriesData[random].capital
@@ -150,7 +150,7 @@ function gameExecute() {
         }
         
         item.onclick = function() {
-          if (window.getComputedStyle(item).fill === "rgba(255, 255, 255, 0.64)") {
+          if (window.getComputedStyle(item).fill == "rgba(255, 255, 255, 0.64)") {
           if (Number(countryName.area) > Number(countriesData[random].area)) {
           
             answerArray = answerArray.filter(ans => ans !== item.id)
@@ -252,7 +252,47 @@ function gameExecute() {
             
         }
       }
-      })}}}
+      })}
+      if (questionStack[3] === decision) {
+        random = countriesData[Math.floor(Math.random() * countriesData.length)]
+        country.forEach(item => {
+          const countryName = countriesData.find(c => c.name.common === item.id.replaceAll("_", " "))
+          imgDisp.src = random.flags.png
+          question.innerText = "What country does this flag belong to?"
+          panel.innerText = ""
+          item.onclick = function() {
+            if (window.getComputedStyle(item).fill == "rgba(255, 255, 255, 0.64)") {
+            if (countryName.name.common === random.name.common) {
+              youWon.showModal()
+              trying++
+              tries.innerText = "Tries: " + trying
+              triesWon.innerText = "Tries: " + trying
+              wonAt.innerText = "You won at Flags mode!"
+              item.style.fill = "green"
+          if (item.parentElement.tagName === "g") {
+            item.parentElement.querySelectorAll("path").forEach(item => {
+              item.style.fill = "green"
+            })
+          
+            }
+            }
+            else {
+               if (item.parentElement.tagName === "g") {
+            item.parentElement.querySelectorAll("path").forEach(item => {
+              item.style.fill = "#780000"
+            })
+             
+            }
+         
+        item.style.fill = "#780000"
+          
+          trying++
+          tries.innerText = "Tries: " + trying 
+            }
+          }}
+        })
+      }
+    }}
           
           
     

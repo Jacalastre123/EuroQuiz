@@ -1,15 +1,19 @@
 const bg = document.getElementById("bg")
 const colorInput = bg.querySelector("#colorInput")
 const bgMus = document.getElementById("bgMus")
+
 let colour = localStorage.getItem("colorInput") || "#55a0aa"
 document.body.style.backgroundColor = colour
+colorInput.value = colour
 function submit() {
     document.body.style.backgroundColor = colorInput.value
     colour = localStorage.setItem("colorInput", colorInput.value)
     bg.close()
     
 }
-
+function revDefault() {
+    colorInput.value = "#55a0aa"
+}
 
 let musicActivator = document.addEventListener("mousemove", playing)
 function playing() {
