@@ -262,15 +262,11 @@ function gameExecute() {
 
     country.forEach((element) => {
        
-        element.addEventListener("contextmenu", event => {
-          event.preventDefault()
-        })
-        element.addEventListener("mousedown", (event) => {
+      
+        element.addEventListener("contextmenu", (event) => {
          let elementFill = window.getComputedStyle(element).fill
-          if (event.button == 2) {
-            document.addEventListener("contextmenu", event => {
-              event.preventDefault()
-            })
+          
+            
             event.preventDefault()
           
          
@@ -293,6 +289,6 @@ function gameExecute() {
 
          
          
-        }
+        
         })
     })
