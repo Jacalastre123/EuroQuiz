@@ -75,6 +75,7 @@ function alliedFunc() {
      
       if (time < limit) {
         if (button) {
+    
           button.disabled = true
         }
         time++
