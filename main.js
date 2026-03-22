@@ -21,6 +21,7 @@
     "Flags"
   ]
   let countriesData = []
+  let success = sessionStorage.getItem("success") || null
   let isVisited = localStorage.getItem("isVisited") || "no"
 
 const panel = document.getElementById("panel")
@@ -80,9 +81,10 @@ function alliedFunc() {
 
   async function quizzingTime(button) {
   
-  
+  sessionStorage.removeItem("success")
    let limit = 10
     let time = 0
+    success = 0
     trying = 0
     tries.innerText = "Tries: " + trying
     let randomiser = await setInterval(function() {
@@ -113,6 +115,8 @@ function gameExecute() {
     if (questionStack[0] === decision) {
  random = Math.floor(Math.random() * countriesData.length)
      question.innerText = "What country has the capital of " + countriesData[random].capital
+      tries.innerText = "Tries: " + trying
+     
       country.forEach(item => {
     const countryName = countriesData.find(c => c.name.common === item.id.replaceAll("_", " "))
    panel.innerText = ""
@@ -126,12 +130,12 @@ function gameExecute() {
             })
            
             }
-            item.style.fill = "green"
-             trying++
-          tries.innerText = "Tries: " + trying 
+              item.style.fill = "green"
+            trying++
             youWon.showModal()
-            triesWon.innerText = "Tries: " + trying
+            tries.innerText = "Tries: " + trying
             wonAt.innerText = "You Won at Capitals mode"
+            triesWon.innerText = "Tries: " + trying
            
     }
     else {
@@ -144,13 +148,14 @@ function gameExecute() {
           }
           
                     trying++
-          tries.innerText = "Tries: " + trying 
+          tries.innerText = "Tries: " + trying
            item.style.fill = "#780000"
     }
     }})
     }
     if (questionStack[1] === decision) {
       answerArray.length = 0
+      tries.innerText = "Success/Failed: " + success + "/" + trying
      let random = Math.floor(Math.random() * countriesData.length)
   while (countriesData[random].name.common === "Russia") {
       random = Math.floor(Math.random() * countriesData.length)
@@ -164,7 +169,9 @@ function gameExecute() {
         const countryName = countriesData.find(c => c.name.common === item.id.replaceAll("_", " "))
         if (Number(countryName.area) > Number(countriesData[random].area)) {
           answerArray.push(item.id)
-        
+          
+         
+          
         }
         
         item.onclick = function() {
@@ -173,8 +180,8 @@ function gameExecute() {
           
             answerArray = answerArray.filter(ans => ans !== item.id)
             panel.innerText = "Countries that are larger: " + answerArray.length
-
-            
+            success++
+            tries.innerText = "Success/Failed: " + success + "/" + trying
            item.style.fill = "green"
           if (item.parentElement.tagName === "g") {
             item.parentElement.querySelectorAll("path").forEach(item => {
@@ -182,13 +189,12 @@ function gameExecute() {
             })
           
             }
-            trying++
-          tries.innerText = "Tries: " + trying 
+           
             if (!answerArray[0]) {
               
               youWon.showModal()
               wonAt.innerText = "You Won at Area mode"
-              triesWon.innerText = "Tries: " + trying 
+              triesWon.innerText = "Success/Failed: " + success + "/" + trying 
             }
           
             
@@ -200,8 +206,8 @@ function gameExecute() {
             })
 
             }
-                      trying++
-          tries.innerText = "Tries: " + trying 
+                trying++
+          tries.innerText = "Success/Failed: " + success + "/" + trying 
         item.style.fill = "#780000"
           }
           
@@ -215,7 +221,7 @@ function gameExecute() {
 
    allianceNum = Math.floor(Math.random() * 4)
     
-     
+     tries.innerText = "Success/Failed: " + success + "/" + trying 
   let alliance = allianceData[alliedFunc()]
       answerArray.length = 0
       country.forEach(item => {
@@ -223,6 +229,7 @@ function gameExecute() {
         panel.innerText = "Countries in the alliance: " + answerArray.length
         if (alliance.includes(item.id)) {
             answerArray.push(item.id)
+            
           }
         panel.innerText = "Countries in the alliance: " + answerArray.length
         item.onclick = function() {
@@ -230,7 +237,7 @@ function gameExecute() {
           if (window.getComputedStyle(item).fill === "rgba(255, 255, 255, 0.64)") {
             if (answerArray.includes(item.id)) {
 
-            
+            success++
             answerArray = answerArray.filter(ans => ans !== item.id)
             panel.innerText = "Countries in the alliance: " + answerArray.length
              if (item.parentElement.tagName === "g") {
@@ -240,12 +247,12 @@ function gameExecute() {
             
              
             } 
-            trying++
+           
          if (answerArray.length === 0) {
              
               youWon.showModal()
               win++
-              triesWon.innerText = "Tries: " + trying
+              triesWon.innerText = "Success/Fails: " + success + "/" + trying
               localStorage.setItem("win", win)
               wins.innerText = "Wins: " + win
               wonAt.innerText = "You Won at Alliance mode"
@@ -266,7 +273,7 @@ function gameExecute() {
         item.style.fill = "#780000"
           }
           
-            tries.innerText = "Tries: " + trying
+            tries.innerText = "Success/Failed: " + success + "/" + trying
 
            
             
@@ -280,11 +287,13 @@ function gameExecute() {
           imgDisp.src = random.flags.png
           question.innerText = "What country does this flag belong to?"
           panel.innerText = ""
+       
           item.onclick = function() {
             if (window.getComputedStyle(item).fill == "rgba(255, 255, 255, 0.64)") {
             if (countryName.name.common === random.name.common) {
               youWon.showModal()
-              trying++
+              
+                 trying++
               tries.innerText = "Tries: " + trying
               triesWon.innerText = "Tries: " + trying
               wonAt.innerText = "You won at Flags mode!"
