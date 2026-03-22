@@ -21,6 +21,7 @@
     "Flags"
   ]
   let countriesData = []
+  let isVisited = localStorage.getItem("isVisited") || "no"
 
 const panel = document.getElementById("panel")
 const question = document.getElementById("question")
@@ -44,20 +45,33 @@ let allianceNum;
 let unIncludedCountries = ["Vatican City", "San Marino", "Andorra", "Åland Islands","Iceland","Faroe Islands", "Cyprus", "Guernsey", "Isle of Man", "Svalbard and Jan Mayen", "Jersey", "Gibraltar", "Liechtenstein", "Monaco", "Kosovo", "Malta"]
 tries.innerText = "Tries: " + trying
 wins.innerText = "Wins: " + win
+
+produceNotif("Twinkle", "The Grey Room / Density & Time Music", 2500)
+setTimeout(function() {
+if (isVisited === "no") {
+  isVisited = "yes"
+  localStorage.setItem("isVisited", isVisited)
+  produceNotif("Welcome to EuroQuiz!", "Right click or hold on a country to find the name!", 3000)
+}
+else {
+  produceNotif("Welcome Back!", "Welcome back to EuroQuiz!", 2000)
+}
+}, 3000)
+
 function alliedFunc() {
       switch(allianceNum) {
         case 0:
           return "Entente WW1"
-          break
+
         case 1:
           return "Central Powers WW1"
-          break
+
         case 2:
           return "Allied Countries WW2"
-          break
+    
         case 3:
           return "Axis Countries WW2"
-          break;
+       
       }}
 
 
@@ -95,6 +109,7 @@ function gameExecute() {
       item.style.fill = "rgba(255, 255, 255, 0.64)"
     })
        imgDisp.src = ""
+       
     if (questionStack[0] === decision) {
  random = Math.floor(Math.random() * countriesData.length)
      question.innerText = "What country has the capital of " + countriesData[random].capital
@@ -125,9 +140,11 @@ function gameExecute() {
             item.parentElement.querySelectorAll("path").forEach(item => {
               item.style.fill = "#780000"
             })
-          trying++
-          tries.innerText = "Tries: " + trying 
+
           }
+          
+                    trying++
+          tries.innerText = "Tries: " + trying 
            item.style.fill = "#780000"
     }
     }})

@@ -6,7 +6,12 @@
     </head>
 <body>
   <h1>EuroQuiz<h1>
-
+<template id="overlay">
+  <div id="notif">
+<h5 id="title"></h5>
+<p id="description"></p>
+</div>
+</template>
 
 
 <dialog id="loading">
@@ -257,6 +262,7 @@
   
 </dialog>
 <audio src="bgMus.mp3" id="bgMus"></audio>
+<script src="Overlay.js"></script>
 <script type="module" src="Server.js"></script>
 <script src="bg.js"></script>
 <script defer src="main.js">

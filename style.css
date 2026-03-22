@@ -112,5 +112,45 @@ path{
            h4 {
             background-color : rgba(0, 0, 0, 0.2);
             padding: 5px;
+            font-size: 0.9em;
+
             border-radius: 5px;
            }
+            @keyframes slide {
+            0% {
+              right: -100px;
+            }
+            50% {
+              right: -50px'
+            }
+            100% {
+              right: 5px
+            }
+           }
+           #notif {
+            min-height: 10vh;
+            width: 30vw;
+            position: absolute;
+            border-radius: 10px;
+            right: 5px;
+            top: 10px;
+
+            padding: 5px;
+            text-align: left;
+            background-color: rgb(72, 119, 177);
+            animation: slide 1s;
+            box-shadow: 5px 5px 10px black;
+           }
+           notif h5 {
+            margin: 0px;
+           
+           }
+
+           #notif p {
+          margin: 0px;
+            text-overflow: ellipsis;
+         
+            white-space: nowrap;
+
+           }
+          

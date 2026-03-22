@@ -5,7 +5,7 @@
     load.innerText = "Europe Fetch Complete"
     countriesData = await res.json()
     load.innerText = "Converted Europe Data"
-    load.innerText = "Fetching Turkey"
+
     load.innerText = "Filtering Countries"
     unIncludedCountries.forEach(UIC => {
       countriesData = countriesData.filter(country => {
