@@ -182,6 +182,8 @@ function gameExecute() {
             })
           
             }
+            trying++
+          tries.innerText = "Tries: " + trying 
             if (!answerArray[0]) {
               
               youWon.showModal()
@@ -196,13 +198,13 @@ function gameExecute() {
             item.parentElement.querySelectorAll("path").forEach(item => {
               item.style.fill = "#780000"
             })
-             
+
             }
-         
+                      trying++
+          tries.innerText = "Tries: " + trying 
         item.style.fill = "#780000"
           }
-          trying++
-          tries.innerText = "Tries: " + trying 
+          
           }}
           
           
