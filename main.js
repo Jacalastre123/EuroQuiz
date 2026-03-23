@@ -82,11 +82,15 @@ function alliedFunc() {
   async function quizzingTime(button) {
   
   sessionStorage.removeItem("success")
+
    let limit = 10
     let time = 0
     success = 0
     trying = 0
     tries.innerText = "Tries: " + trying
+      const quest = document.getElementById("quest")
+  const quePos = quest.getBoundingClientRect().top
+  window.scrollTo({top: quePos, behavior: 'smooth'})
     let randomiser = await setInterval(function() {
      
       if (time < limit) {
@@ -107,6 +111,7 @@ function alliedFunc() {
       
     }, 100)
 function gameExecute() {
+  
      document.querySelectorAll("path").forEach(item => {
       item.style.fill = "rgba(255, 255, 255, 0.64)"
     })

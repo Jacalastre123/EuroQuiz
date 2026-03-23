@@ -22,7 +22,7 @@ path{
             background-color: #55a0aa;
            }
            
-           .quest {
+           #quest {
              background-color: rgba(71, 105, 128, 0.892);
             padding: 5px;
             text-align: left;
