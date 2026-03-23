@@ -89,7 +89,7 @@ function alliedFunc() {
     trying = 0
     tries.innerText = "Tries: " + trying
       const quest = document.getElementById("quest")
-  const quePos = quest.getBoundingClientRect().top
+  const quePos = quest.getBoundingClientRect().top - window.scrollY
   window.scrollTo({top: quePos, behavior: 'smooth'})
     let randomiser = await setInterval(function() {
      
