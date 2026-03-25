@@ -41,6 +41,7 @@ let win = localStorage.getItem("win") || 0
 let trying = 0
   let decision;
 let random;
+let learning = true
 let allianceNum;
  let answerArray = []
 let unIncludedCountries = ["Vatican City", "San Marino", "Andorra", "Åland Islands","Iceland","Faroe Islands", "Cyprus", "Guernsey", "Isle of Man", "Svalbard and Jan Mayen", "Jersey", "Gibraltar", "Liechtenstein", "Monaco", "Kosovo", "Malta"]
@@ -87,6 +88,7 @@ function alliedFunc() {
     let time = 0
     success = 0
     trying = 0
+    learning = false
     tries.innerText = "Tries: " + trying
       const quest = document.getElementById("quest")
   const quePos = quest.getBoundingClientRect().top - window.scrollY
@@ -116,7 +118,7 @@ function gameExecute() {
       item.style.fill = "rgba(255, 255, 255, 0.64)"
     })
        imgDisp.src = ""
-       
+       if (!learning) {
     if (questionStack[0] === decision) {
  random = Math.floor(Math.random() * countriesData.length)
      question.innerText = "What country has the capital of " + countriesData[random].capital
@@ -326,13 +328,14 @@ function gameExecute() {
           }}
         })
       }
+    }
     }}
           
           
     
   
     
- 
+ function start() {
 
     country.forEach((element) => {
        
@@ -350,19 +353,79 @@ function gameExecute() {
          setTimeout(function() {
           box.remove()
          }, 3000)
-
-          box.innerText = element.id.replaceAll("_", " ")
+         if (!learning) {
+          box.innerHTML = "<h5>" + element.id.replaceAll("_", " ")  + "</h5>"
+         }
           document.body.appendChild(box)
           let boxAll = document.querySelectorAll(".box")
            if (boxAll[1]) {
           boxAll[0].remove()
          }
+         const countryFound = countriesData.find(data => data.name.common === element.id.replaceAll("_", " ") )
          box.style.setProperty("--colour", elementFill)
          box.style.left = event.clientX + "px"
           box.style.top = event.clientY + "px"
+          if (learning) {
+             const img = document.createElement("img")
+          img.src = countryFound.flags.png
+          img.style.maxHeight = "10vh"
+          img.style.margin = "1px"
+          box.appendChild(img)
+
+          const h5 = document.createElement("h5")
+          h5.innerText = element.id.replaceAll("_", " ")
+          h5.style.margin = "1px"
+          box.appendChild(h5)
+ 
+         const p = document.createElement("p")
+         p.innerHTML = "Area: " + countryFound.area
+         box.appendChild(p)
+
+         const p2 = document.createElement("p")
+         p2.innerHTML = "<small>Area: " + countryFound.capital[0]
+         box.appendChild(p2)
+
+         const p3 = document.createElement("p")
+         let list = []
+         
+         if (allianceData["Axis Countries WW2"].includes(element.id.replaceAll("_", " "))) {
+          list.push("Axis WW2")
+         }
+         if (allianceData["Entente WW1"].includes(element.id.replaceAll("_", " "))) {
+          list.push("Entenete WW1")
+         }
+         if (allianceData["Central Powers WW1"].includes(element.id.replaceAll("_", " "))) {
+          list.push("Central Poweres WW1")
+         }
+         if (allianceData["Allied Countries WW2"].includes(element.id.replaceAll("_", " "))) {
+          list.push("Allied WW2")
+         }
+         p3.innerHTML = "<small>Tags: " + list.join(", ")
+         box.appendChild(p3)
 
          
+        }
+       
          
         
         })
     })
+  }
+
+    function endGame() {
+      gameType.innerText = "Type: Home"
+      panel.innerText = ""
+      question.innerText = "Click Start!"
+      learning = true
+      tying = 0
+      tries.innerText = "Tries: " + trying
+      country.forEach(item => {
+        item.onclick = null
+      })
+      imgDisp.src = ""
+        document.querySelectorAll("path").forEach(item => {
+      item.style.fill = "rgba(255, 255, 255, 0.64)"
+    })
+      start()
+    }
+    start()
