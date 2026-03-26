@@ -388,16 +388,16 @@ function gameExecute() {
          const p3 = document.createElement("p")
          let list = []
          
-         if (allianceData["Axis Countries WW2"].includes(element.id.replaceAll("_", " "))) {
+         if (allianceData["Axis Countries WW2"].includes(element.id)) {
           list.push("Axis WW2")
          }
-         if (allianceData["Entente WW1"].includes(element.id.replaceAll("_", " "))) {
+         if (allianceData["Entente WW1"].includes(element.id)) {
           list.push("Entenete WW1")
          }
-         if (allianceData["Central Powers WW1"].includes(element.id.replaceAll("_", " "))) {
+         if (allianceData["Central Powers WW1"].includes(element.id)) {
           list.push("Central Poweres WW1")
          }
-         if (allianceData["Allied Countries WW2"].includes(element.id.replaceAll("_", " "))) {
+         if (allianceData["Allied Countries WW2"].includes(element.id)) {
           list.push("Allied WW2")
          }
          p3.innerHTML = "<small>Tags: " + list.join(", ")

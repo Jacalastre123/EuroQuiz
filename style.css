@@ -157,11 +157,11 @@ path{
            }
 
            .return {
-            width: 91vh;
+            width: 91vw;
            }
 
            .return, .bg, .offMus {
             margin: 4.5px;
-            height: 6vh;
+           height: 5vh;
            }
           
