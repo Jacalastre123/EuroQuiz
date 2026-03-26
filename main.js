@@ -378,11 +378,11 @@ function gameExecute() {
           box.appendChild(h5)
  
          const p = document.createElement("p")
-         p.innerHTML = "Area: " + countryFound.area
+         p.innerHTML = "Area: " + countryFound.area + "</small>"
          box.appendChild(p)
 
          const p2 = document.createElement("p")
-         p2.innerHTML = "<small>Area: " + countryFound.capital[0]
+         p2.innerHTML = "<small>Capital: " + countryFound.capital[0] + "</small>"
          box.appendChild(p2)
 
          const p3 = document.createElement("p")
@@ -400,7 +400,7 @@ function gameExecute() {
          if (allianceData["Allied Countries WW2"].includes(element.id)) {
           list.push("Allied WW2")
          }
-         p3.innerHTML = "<small>Tags: " + list.join(", ")
+         p3.innerHTML = "<small>Tags: " + list.join(", ")  + "</small>"
          box.appendChild(p3)
 
          
