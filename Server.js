@@ -12,10 +12,12 @@
         return country.name.common !== UIC
       })
     })
+    localStorage.setItem("countriesData", countriesData)
     
     load.innerText = "Fully Completed closing..."
     setTimeout(function() {loading.close()}, 1000)
     
 
   }
-   await countries()
+  await countries()
+

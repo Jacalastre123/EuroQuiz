@@ -12,18 +12,38 @@
     "Germany", "Italy", "Romania", "Bulgaria", "Finland", "Hungary"
   ],
  
-  }
  
+  }
+
+  const extentData = {
+    "Yugoslavia": [
+      "Serbia", "Bosnia_and_Herzegovina", "Croatia", "North_Macedonia", "Montenegro", "Slovenia", "Croatia"
+    ],
+    "USSR_1950": [
+      "Russia", "Ukraine", "Belarus", "Lithuania", "Latvia", "Estonia", "Moldova"
+    ],
+    "Austria_Hungary": [
+      "Austria", "Hungary", "Czechia", "Slovakia", "Slovenia", "Croatia", "Bosnia_and_Herzegovina"
+    ],
+    "Ottoman_Empire_1650": [
+      "Greece", "Bulgaria", "North_Macedonia", "Serbia", "Bosnia_and_Herzegovina", "Romania", "Montenegro", "Albania", "Moldova"
+    ],
+    "Great_Britain_1900": [
+      "United_Kingdom", "Ireland"
+    ]
+
+  }
   const questionStack = [
     "Capital",
     "Area",
     "Alliances", 
-    "Flags"
+    "Flags",
+    "Parts"
   ]
   let countriesData = []
   let success = sessionStorage.getItem("success") || null
   let isVisited = localStorage.getItem("isVisited") || "no"
-
+ 
 const panel = document.getElementById("panel")
 const question = document.getElementById("question")
 const country = document.querySelectorAll(".country")
@@ -41,12 +61,15 @@ let win = localStorage.getItem("win") || 0
 let trying = 0
   let decision;
 let random;
+let randomPart;
 let learning = true
 let allianceNum;
  let answerArray = []
+
 let unIncludedCountries = ["Vatican City", "San Marino", "Andorra", "Åland Islands","Iceland","Faroe Islands", "Cyprus", "Guernsey", "Isle of Man", "Svalbard and Jan Mayen", "Jersey", "Gibraltar", "Liechtenstein", "Monaco", "Kosovo", "Malta"]
 tries.innerText = "Tries: " + trying
 wins.innerText = "Wins: " + win
+
 
 produceNotif("Twinkle", "The Grey Room / Density & Time Music", 2500)
 setTimeout(function() {
@@ -74,8 +97,23 @@ function alliedFunc() {
         case 3:
           return "Axis Countries WW2"
        
-      }}
-
+      }
+    
+    }
+  function partFunc() {
+    switch(randomPart) {
+      case 0:
+        return "Yugoslavia"
+      case 1:
+        return "USSR_1950"
+      case 2:
+        return "Austria_Hungary"
+      case 3:
+        return "Ottoman_Empire_1650"
+      case 4:
+        return "Great_Britain_1900"
+    }
+   }       
 
 
  
@@ -101,6 +139,7 @@ function alliedFunc() {
           button.disabled = true
         }
         time++
+   
         decision = questionStack[Math.floor(Math.random() * questionStack.length)]
         gameType.innerText = "Type: " + decision
         
@@ -328,10 +367,63 @@ function gameExecute() {
           }}
         })
       }
+
+      if (questionStack[4] === decision) {
+         randomPart = Math.floor(Math.random() * 5)
+console.log(randomPart)
+         let amount = 0
+       let part = partFunc()
+        
+       question.innerText = "What Countries were part of " + part.replaceAll("_", " ")
+       country.forEach(item => {
+        if (extentData[part].includes(item.id)) {
+          amount++
+          panel.innerText = "Countries part of " + part.replaceAll("_", " ") + ": " + amount
+          
+          item.onclick = function() {
+            if (window.getComputedStyle(item).fill === "rgba(255, 255, 255, 0.64)") {
+             if (extentData[part].includes(item.id)) {
+              amount--
+              panel.innerText = "Countries part of " + part.replaceAll("_", " ") + ": " + amount
+
+               success++
+            tries.innerText = "Success/Failed: " + success + "/" + trying
+           item.style.fill = "green"
+          if (item.parentElement.tagName === "g") {
+            item.parentElement.querySelectorAll("path").forEach(item => {
+              item.style.fill = "green"
+            })
+          
+            }
+           
+            if (amount === 0) {
+              
+              youWon.showModal()
+              wonAt.innerText = "You Won at Parts mode"
+              triesWon.innerText = "Success/Failed: " + success + "/" + trying 
+            }
+          
+            
+          }  else {
+             if (item.parentElement.tagName === "g") {
+            item.parentElement.querySelectorAll("path").forEach(item => {
+              item.style.fill = "#780000"
+            })
+
+            }
+                trying++
+          tries.innerText = "Success/Failed: " + success + "/" + trying 
+        item.style.fill = "#780000"
+          }}
+        }
+          }
+        
+      })
+      }
     }
     }}
           
-          
+ 
     
   
     
@@ -352,7 +444,7 @@ function gameExecute() {
           
          setTimeout(function() {
           box.remove()
-         }, 3000)
+         }, 2200)
          if (!learning) {
           box.innerHTML = "<h5>" + element.id.replaceAll("_", " ")  + "</h5>"
          }
@@ -387,7 +479,12 @@ function gameExecute() {
 
          const p3 = document.createElement("p")
          let list = []
-         
+         for (let i = 0; i < 5; i++) {
+          randomPart = i
+          if (extentData[partFunc()].includes(element.id)) {
+          list.push(partFunc().replaceAll("_", " "))
+          }
+       }
          if (allianceData["Axis Countries WW2"].includes(element.id)) {
           list.push("Axis WW2")
          }
@@ -395,7 +492,7 @@ function gameExecute() {
           list.push("Entenete WW1")
          }
          if (allianceData["Central Powers WW1"].includes(element.id)) {
-          list.push("Central Poweres WW1")
+          list.push("Central Powers WW1")
          }
          if (allianceData["Allied Countries WW2"].includes(element.id)) {
           list.push("Allied WW2")
@@ -403,11 +500,11 @@ function gameExecute() {
          p3.innerHTML = "<small>Tags: " + list.join(", ")  + "</small>"
          box.appendChild(p3)
 
-         
+          
         }
        
          
-        
+      
         })
     })
   }
