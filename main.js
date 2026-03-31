@@ -438,7 +438,7 @@ console.log(randomPart)
     country.forEach((element) => {
        
       
-        element.addEventListener("contextmenu", (event) => {
+        element.addEventListener("dblclick", (event) => {
          let elementFill = window.getComputedStyle(element).fill
           
             
