@@ -374,7 +374,7 @@ function gameExecute() {
 
       if (questionStack[4] === decision) {
          randomPart = Math.floor(Math.random() * 5)
-console.log(randomPart)
+
          let amount = 0
        let part = partFunc()
         
@@ -411,15 +411,15 @@ console.log(randomPart)
           
             
           }  else {
-             if (item.parentElement.tagName === "g") {
+            
+                trying++
+          tries.innerText = "Success/Failed: " + success + "/" + trying 
+       
+               item.style.fill = "#780000"
+          if (item.parentElement.tagName === "g") {
             item.parentElement.querySelectorAll("path").forEach(item => {
               item.style.fill = "#780000"
             })
-
-            }
-                trying++
-          tries.innerText = "Success/Failed: " + success + "/" + trying 
-        item.style.fill = "#780000"
           }}
         }
           }
