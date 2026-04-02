@@ -170,6 +170,8 @@ function gameExecute() {
     item.onclick = function() {
     
     if (countriesData[random].capital === countryName.capital) {
+      win++
+      wins.innerText = "Wins: " + win
       if (item.parentElement.tagName === "g") {
             item.parentElement.querySelectorAll("path").forEach(item => {
               item.style.fill = "green"
@@ -237,7 +239,8 @@ function gameExecute() {
             }
            
             if (!answerArray[0]) {
-              
+              win++
+              wins.innerText = "Wins: " + win
               youWon.showModal()
               wonAt.innerText = "You Won at Area mode"
               triesWon.innerText = "Success/Failed: " + success + "/" + trying 
@@ -338,7 +341,8 @@ function gameExecute() {
             if (window.getComputedStyle(item).fill == "rgba(255, 255, 255, 0.64)") {
             if (countryName.name.common === random.name.common) {
               youWon.showModal()
-              
+              win++
+              wins.innerText = "Wins: " + win
                  trying++
               tries.innerText = "Tries: " + trying
               triesWon.innerText = "Tries: " + trying
@@ -373,7 +377,7 @@ function gameExecute() {
 console.log(randomPart)
          let amount = 0
        let part = partFunc()
-        answerArray.length = 0
+        
        question.innerText = "What Countries were part of " + part.replaceAll("_", " ")
        country.forEach(item => {
         if (extentData[part].includes(item.id)) {
@@ -401,21 +405,21 @@ console.log(randomPart)
               youWon.showModal()
               wonAt.innerText = "You Won at Parts mode"
               triesWon.innerText = "Success/Failed: " + success + "/" + trying 
+              win++
+              wins.innerText = "Wins: " + win
             }
           
             
-          }
-            else {
-        
-                trying++
-          tries.innerText = "Success/Failed: " + success + "/" + trying 
-        item.style.fill = "#780000"
+          }  else {
              if (item.parentElement.tagName === "g") {
             item.parentElement.querySelectorAll("path").forEach(item => {
               item.style.fill = "#780000"
             })
 
             }
+                trying++
+          tries.innerText = "Success/Failed: " + success + "/" + trying 
+        item.style.fill = "#780000"
           }}
         }
           }
@@ -434,7 +438,7 @@ console.log(randomPart)
     country.forEach((element) => {
        
       
-        element.addEventListener("contextmenu", (event) => {
+        element.addEventListener("dblclick", (event) => {
          let elementFill = window.getComputedStyle(element).fill
           
             
