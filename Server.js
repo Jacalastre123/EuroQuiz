@@ -1,4 +1,6 @@
- async function countries() {
+let countriesData;
+
+async function countries() {
     loading.showModal()
     load.innerText = "Fetching Europe"
     let res = await fetch("https://restcountries.com/v3.1/region/europe") 
