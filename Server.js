@@ -1,4 +1,4 @@
-let countriesData;
+
 
 async function countries() {
     loading.showModal()
