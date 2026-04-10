@@ -56,6 +56,7 @@ const wonAt = youWon.querySelector("#wonAt")
 const tries = document.getElementById("tries")
 const wins = document.getElementById("wins")
 const gameType = document.getElementById("gameType")
+const answers = youWon.querySelector("#answers")
 const imgDisp = document.getElementById("imgDisp")
 let win = localStorage.getItem("win") || 0
 let trying = 0

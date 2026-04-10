@@ -116,6 +116,7 @@ function gameExecute() {
             tries.innerText = "Tries: " + trying
             wonAt.innerText = "You Won at Capitals mode"
             triesWon.innerText = "Tries: " + trying
+            answers.innerHTML = "Answer: " + countryName.name.common
            
     }
     else {
@@ -176,6 +177,7 @@ function gameExecute() {
               youWon.showModal()
               wonAt.innerText = "You Won at Area mode"
               triesWon.innerText = "Success/Failed: " + success + "/" + trying 
+              
             }
           
             
@@ -237,6 +239,7 @@ function gameExecute() {
               localStorage.setItem("win", win)
               wins.innerText = "Wins: " + win
               wonAt.innerText = "You Won at Alliance mode"
+              
             }
         item.style.fill = "green"
           }
@@ -278,6 +281,7 @@ function gameExecute() {
                  trying++
               tries.innerText = "Tries: " + trying
               triesWon.innerText = "Tries: " + trying
+              answers.innerHTML = "Answer: " + random.name.common
               wonAt.innerText = "You won at Flags mode!"
               item.style.fill = "green"
           if (item.parentElement.tagName === "g") {
@@ -355,7 +359,7 @@ function gameExecute() {
           }}
         }
           }
-        
+        }
       })
       }
     }
