@@ -163,6 +163,7 @@ function gameExecute() {
             panel.innerText = "Countries that are larger: " + answerArray.length
             success++
             tries.innerText = "Success/Failed: " + success + "/" + trying
+            answers.innerText  = ""
            item.style.fill = "green"
           if (item.parentElement.tagName === "g") {
             item.parentElement.querySelectorAll("path").forEach(item => {
