@@ -239,7 +239,7 @@ function gameExecute() {
               localStorage.setItem("win", win)
               wins.innerText = "Wins: " + win
               wonAt.innerText = "You Won at Alliance mode"
-              
+              answers.innerHTML = ""
             }
         item.style.fill = "green"
           }
