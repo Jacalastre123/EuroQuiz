@@ -4,7 +4,7 @@ async function countries() {
     loading.showModal()
     load.innerText = "Fetching Europe"
     let res = await fetch("https://api.restcountries.com/v5?region=europe", {headers: {
-        "Authorization": "Bearer rc_live_f2fc9ff67a8946de80e74fd03d3566e0"
+        "Authorization": "William rc_live_f2fc9ff67a8946de80e74fd03d3566e0"
     }}) 
     load.innerText = "Europe Fetch Complete"
     countriesData = await res.json()
