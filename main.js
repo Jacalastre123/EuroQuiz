@@ -92,16 +92,16 @@ function gameExecute() {
        if (!learning) {
     if (questionStack[0] === decision) {
  random = Math.floor(Math.random() * countriesData.length)
-     question.innerText = "What country has the capital of " + countriesData[random].capital
+     question.innerText = "What country has the capital of " + countriesData[random].capitals[0].name
       tries.innerText = "Tries: " + trying
      
       country.forEach(item => {
-    const countryName = countriesData.find(c => c.name.common === item.id.replaceAll("_", " "))
+    const countryName = countriesData.find(c => c.names.common === item.id.replaceAll("_", " "))
    panel.innerText = ""
     
     item.onclick = function() {
     
-    if (countriesData[random].capital === countryName.capital) {
+    if (countriesData[random].capitals[0].name === countryName.capitals[0].name) {
       win++
       wins.innerText = "Wins: " + win
       if (item.parentElement.tagName === "g") {
@@ -116,7 +116,7 @@ function gameExecute() {
             tries.innerText = "Tries: " + trying
             wonAt.innerText = "You Won at Capitals mode"
             triesWon.innerText = "Tries: " + trying
-            answers.innerHTML = "Answer: " + countryName.name.common
+            answers.innerHTML = "Answer: " + countryName.names.common
            
     }
     else {
@@ -138,17 +138,17 @@ function gameExecute() {
       answerArray.length = 0
       tries.innerText = "Success/Failed: " + success + "/" + trying
      let random = Math.floor(Math.random() * countriesData.length)
-  while (countriesData[random].name.common === "Russia") {
+  while (countriesData[random].names.common === "Russia") {
       random = Math.floor(Math.random() * countriesData.length)
   }
   
       
-      question.innerText = "What countries are larger than " + countriesData[random].name.common
+      question.innerText = "What countries are larger than " + countriesData[random].names.common
       country.forEach(item => {
         
        
-        const countryName = countriesData.find(c => c.name.common === item.id.replaceAll("_", " "))
-        if (Number(countryName.area) > Number(countriesData[random].area)) {
+        const countryName = countriesData.find(c => c.names.common === item.id.replaceAll("_", " "))
+        if (Number(countryName.area.kilometres) > Number(countriesData[random].area.kilometres)) {
           answerArray.push(item.id)
           
          
@@ -157,7 +157,7 @@ function gameExecute() {
         
         item.onclick = function() {
           if (window.getComputedStyle(item).fill == "rgba(255, 255, 255, 0.64)") {
-          if (Number(countryName.area) > Number(countriesData[random].area)) {
+          if (Number(countryName.area.kilometres) > Number(countriesData[random].area.kilometres)) {
           
             answerArray = answerArray.filter(ans => ans !== item.id)
             panel.innerText = "Countries that are larger: " + answerArray.length
@@ -268,21 +268,21 @@ function gameExecute() {
       if (questionStack[3] === decision) {
         random = countriesData[Math.floor(Math.random() * countriesData.length)]
         country.forEach(item => {
-          const countryName = countriesData.find(c => c.name.common === item.id.replaceAll("_", " "))
+          const countryName = countriesData.find(c => c.names.common === item.id.replaceAll("_", " "))
           imgDisp.src = random.flags.png
           question.innerText = "What country does this flag belong to?"
           panel.innerText = ""
        
           item.onclick = function() {
             if (window.getComputedStyle(item).fill == "rgba(255, 255, 255, 0.64)") {
-            if (countryName.name.common === random.name.common) {
+            if (countryName.names.common === random.names.common) {
               youWon.showModal()
               win++
               wins.innerText = "Wins: " + win
                  trying++
               tries.innerText = "Tries: " + trying
               triesWon.innerText = "Tries: " + trying
-              answers.innerHTML = "Answer: " + random.name.common
+              answers.innerHTML = "Answer: " + random.names.common
               wonAt.innerText = "You won at Flags mode!"
               item.style.fill = "green"
           if (item.parentElement.tagName === "g") {
@@ -396,7 +396,7 @@ function gameExecute() {
            if (boxAll[1]) {
           boxAll[0].remove()
          }
-         const countryFound = countriesData.find(data => data.name.common === element.id.replaceAll("_", " ") )
+         const countryFound = countriesData.find(data => data.names.common === element.id.replaceAll("_", " ") )
          box.style.setProperty("--colour", elementFill)
          box.style.left = event.clientX + "px"
           box.style.top = event.clientY + "px"
@@ -413,11 +413,11 @@ function gameExecute() {
           box.appendChild(h5)
  
          const p = document.createElement("p")
-         p.innerHTML = "Area: " + countryFound.area + "</small>"
+         p.innerHTML = "Area: " + countryFound.area.kilometres + "</small>"
          box.appendChild(p)
 
          const p2 = document.createElement("p")
-         p2.innerHTML = "<small>Capital: " + countryFound.capital[0] + "</small>"
+         p2.innerHTML = "<small>Capital: " + countryFound.capitals[0].name + "</small>"
          box.appendChild(p2)
 
          const p3 = document.createElement("p")
