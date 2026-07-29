@@ -13,7 +13,7 @@ async function countries() {
     load.innerText = "Filtering Countries"
     unIncludedCountries.forEach(UIC => {
       countriesData = countriesData.filter(country => {
-        return country.name.common !== UIC
+        return country.names.common !== UIC
       })
     })
     localStorage.setItem("countriesData", countriesData)
