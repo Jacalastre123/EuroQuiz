@@ -91,17 +91,17 @@ function gameExecute() {
        imgDisp.src = ""
        if (!learning) {
     if (questionStack[0] === decision) {
- random = Math.floor(Math.random() * countriesData.length)
-     question.innerText = "What country has the capital of " + countriesData[random].capitals[0].name
+ random = Math.floor(Math.random() * countriesData.data.objects.length)
+     question.innerText = "What country has the capital of " + countriesData.data.objects[random].capitals[0].name
       tries.innerText = "Tries: " + trying
      
       country.forEach(item => {
-    const countryName = countriesData.find(c => c.names.common === item.id.replaceAll("_", " "))
+    const countryName = countriesData.data.objects.data.objects.find(c => c.names.common === item.id.replaceAll("_", " "))
    panel.innerText = ""
     
     item.onclick = function() {
     
-    if (countriesData[random].capitals[0].name === countryName.capitals[0].name) {
+    if (countriesData.data.objects[random].capitals[0].name === countryName.capitals[0].name) {
       win++
       wins.innerText = "Wins: " + win
       if (item.parentElement.tagName === "g") {
@@ -137,18 +137,18 @@ function gameExecute() {
     if (questionStack[1] === decision) {
       answerArray.length = 0
       tries.innerText = "Success/Failed: " + success + "/" + trying
-     let random = Math.floor(Math.random() * countriesData.length)
-  while (countriesData[random].names.common === "Russia") {
-      random = Math.floor(Math.random() * countriesData.length)
+     let random = Math.floor(Math.random() * countriesData.data.objects.length)
+  while (countriesData.data.objects[random].names.common === "Russia") {
+      random = Math.floor(Math.random() * countriesData.data.objects.length)
   }
   
       
-      question.innerText = "What countries are larger than " + countriesData[random].names.common
+      question.innerText = "What countries are larger than " + countriesData.data.objects[random].names.common
       country.forEach(item => {
         
        
-        const countryName = countriesData.find(c => c.names.common === item.id.replaceAll("_", " "))
-        if (Number(countryName.area.kilometres) > Number(countriesData[random].area.kilometres)) {
+        const countryName = countriesData.data.objects.find(c => c.names.common === item.id.replaceAll("_", " "))
+        if (Number(countryName.area.kilometres) > Number(countriesData.data.objects[random].area.kilometres)) {
           answerArray.push(item.id)
           
          
@@ -157,7 +157,7 @@ function gameExecute() {
         
         item.onclick = function() {
           if (window.getComputedStyle(item).fill == "rgba(255, 255, 255, 0.64)") {
-          if (Number(countryName.area.kilometres) > Number(countriesData[random].area.kilometres)) {
+          if (Number(countryName.area.kilometres) > Number(countriesData.data.objects[random].area.kilometres)) {
           
             answerArray = answerArray.filter(ans => ans !== item.id)
             panel.innerText = "Countries that are larger: " + answerArray.length
@@ -266,10 +266,10 @@ function gameExecute() {
       }
       })}
       if (questionStack[3] === decision) {
-        random = countriesData[Math.floor(Math.random() * countriesData.length)]
+        random = countriesData.data.objects[Math.floor(Math.random() * countriesData.data.objects.length)]
         country.forEach(item => {
-          const countryName = countriesData.find(c => c.names.common === item.id.replaceAll("_", " "))
-          imgDisp.src = random.flags.png
+          const countryName = countriesData.data.objects.find(c => c.names.common === item.id.replaceAll("_", " "))
+          imgDisp.src = random.flags.url_png
           question.innerText = "What country does this flag belong to?"
           panel.innerText = ""
        
@@ -396,7 +396,7 @@ function gameExecute() {
            if (boxAll[1]) {
           boxAll[0].remove()
          }
-         const countryFound = countriesData.find(data => data.names.common === element.id.replaceAll("_", " ") )
+         const countryFound = countriesData.data.objects.find(data => data.names.common === element.id.replaceAll("_", " ") )
          box.style.setProperty("--colour", elementFill)
          box.style.left = event.clientX + "px"
           box.style.top = event.clientY + "px"
