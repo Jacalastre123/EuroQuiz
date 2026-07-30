@@ -9,17 +9,10 @@ async function countries() {
     load.innerText = "Europe Fetch Complete"
     countriesData = await res.json()
     load.innerText = "Converted Europe Data"
-
-    load.innerText = "Filtering Countries"
-    unIncludedCountries.forEach(UIC => {
-      countriesData = countriesData.filter(country => {
-        return country.names.common !== UIC
-      })
-    })
     localStorage.setItem("countriesData", countriesData)
     
     load.innerText = "Fully Completed closing..."
-    setTimeout(function() {loading.close()}, 1000)
+    setTimeout(function() {loading.close()}, 500)
     
 
   }
